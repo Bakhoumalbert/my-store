@@ -1,6 +1,7 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import { ArticleCard } from "../ArticleCard";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const ProductList = ({products, cart, updateCart }) => {
 
@@ -36,11 +37,19 @@ export const ProductList = ({products, cart, updateCart }) => {
 				(product) => product.id !== id
 			)
 			updateCart([
-				...cartFilteredCurrentProduct,
-				{ title, price, amount: currentProductSaved.amount + 1 }
-			])
+        ...cartFilteredCurrentProduct,
+        {
+          title, price, // Conserve les propriétés actuelles
+          amount: (currentProductSaved.amount || 0) + 1, // Incrémente amount
+        },
+      ]);
+      toast.success(`Produit ${title} ajouté avec succes`);
 		} else {
-			updateCart([...cart, {id, title, price, amount: 1 }])
+      updateCart([
+        ...cart,
+        { id, title, price, amount: 1 }, // Initialise amount à 1
+      ]);
+      toast.success(`Produit ${title} ajouté avec succes`);
 		}
 	}
 

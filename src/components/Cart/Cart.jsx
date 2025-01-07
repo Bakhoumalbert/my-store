@@ -2,12 +2,11 @@ import { useEffect } from "react";
 
 export const Cart = ({ cart, updateCart }) => {
   
+  console.log('Cart', cart);
   
-  const total = cart.reduce(
-    (acc, prod) => acc + prod.amount * prod.price,
-    0
-  );
-  console.log("total", total);
+  
+  const total = cart.reduce((acc, prod) => acc + prod.amount * prod.price, 0);
+  
   
   useEffect(() => {
     document.title = `LMJ: ${total}€ d'achats`;

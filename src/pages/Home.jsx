@@ -31,13 +31,15 @@ export const Home = () => {
     }
     , []);
     
-  const savedCart = localStorage.getItem("cart");
-  console.log("parse = ", JSON.parse(savedCart));
-  const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : []);
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-  console.log("stringify = ", JSON.stringify(cart));
+    const savedCart = localStorage.getItem("cart");
+    let initialCart = [];
+    try {
+      initialCart = savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error("Erreur de parsing du panier :", error);
+      initialCart = [];
+    }
+    const [cart, updateCart] = useState(initialCart);    
 
 
   return (

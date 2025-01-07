@@ -62,9 +62,6 @@ export const ArticleCard = ({product, handleAddCart }) => {
       </p>
 
       <div className="space-x-2">
-        <button className="px-4 py-2 bg-green-300 text-white rounded hover:bg-green-200">
-          Buy
-        </button>
         <button onClick={() => handleAddCart(id, title, price)} className="px-4 py-2 bg-green-300 text-white rounded hover:bg-green-200">
           Buy 2
         </button>
